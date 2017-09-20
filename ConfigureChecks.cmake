@@ -49,6 +49,14 @@ int main(void){ return 0; }
     endif()
 endif(CMAKE_COMPILER_IS_GNUCC AND NOT MINGW AND NOT OS2)
 
+if(ANDROID)
+    # workaround for https://github.com/android-ndk/ndk/issues/243
+    string(REPLACE "-g " "" CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
+    string(REPLACE "-g " "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
+    set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+endif()
+
 # HEADER FILES
 check_include_file(argp.h HAVE_ARGP_H)
 check_include_file(pty.h HAVE_PTY_H)
