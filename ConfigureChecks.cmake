@@ -44,6 +44,9 @@ int main(void){ return 0; }
 " WITH_VISIBILITY_HIDDEN)
         set(CMAKE_REQUIRED_FLAGS "")
     endif (NOT GNUCC_VERSION EQUAL 34)
+    if(ANDROID)
+        set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-warn-shared-textrel")
+    endif()
 endif(CMAKE_COMPILER_IS_GNUCC AND NOT MINGW AND NOT OS2)
 
 # HEADER FILES
