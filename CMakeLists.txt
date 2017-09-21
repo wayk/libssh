@@ -43,6 +43,14 @@ if(NOT DEFINED WITH_SHARED_LIB)
 	set(WITH_SHARED_LIB ${BUILD_SHARED_LIBS})
 endif()
 
+if(MSVC)
+  include(MSVCRuntime)
+  if(NOT DEFINED MSVC_RUNTIME)
+    set(MSVC_RUNTIME "static")
+  endif()
+  configure_msvc_runtime()
+endif()
+
 # search for libraries
 if (WITH_ZLIB)
     find_package(ZLIB REQUIRED)

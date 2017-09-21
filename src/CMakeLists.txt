@@ -268,7 +268,7 @@ if (WITH_STATIC_LIB)
   add_library(${LIBSSH_STATIC_LIBRARY} STATIC ${libssh_SRCS})
 
   if (MSVC)
-    set(OUTPUT_SUFFIX static)
+    set(OUTPUT_SUFFIX )
   else (MSVC)
     set(OUTPUT_SUFFIX )
   endif (MSVC)
