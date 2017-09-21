@@ -225,6 +225,8 @@ include_directories(
   ${LIBSSH_PRIVATE_INCLUDE_DIRS}
 )
 
+if(WITH_SHARED_LIB)
+
 add_library(${LIBSSH_SHARED_LIBRARY} SHARED ${libssh_SRCS})
 
 target_link_libraries(${LIBSSH_SHARED_LIBRARY} ${LIBSSH_LINK_LIBRARIES})
@@ -259,6 +261,8 @@ install(
   ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
   COMPONENT libraries
 )
+
+endif(WITH_SHARED_LIB)
 
 if (WITH_STATIC_LIB)
   add_library(${LIBSSH_STATIC_LIBRARY} STATIC ${libssh_SRCS})

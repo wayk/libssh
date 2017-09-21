@@ -59,6 +59,8 @@ include_directories(
 if (libssh_threads_SRCS)
     set(LIBSSH_THREADS ON CACHE "libssh threads lib" INTERNAL)
 
+    if (WITH_SHARED_LIB)
+
     add_library(${LIBSSH_THREADS_SHARED_LIBRARY} SHARED ${libssh_threads_SRCS})
 
     target_link_libraries(${LIBSSH_THREADS_SHARED_LIBRARY} ${LIBSSH_THREADS_LINK_LIBRARIES})
@@ -88,6 +90,8 @@ if (libssh_threads_SRCS)
       ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
       COMPONENT libraries
     )
+
+    endif(WITH_SHARED_LIB)
 
     if (WITH_STATIC_LIB)
       add_library(${LIBSSH_THREADS_STATIC_LIBRARY} STATIC ${libssh_threads_SRCS})

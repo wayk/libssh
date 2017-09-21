@@ -39,6 +39,10 @@ include(CPackConfig.cmake)
 include(MacroEnsureOutOfSourceBuild)
 macro_ensure_out_of_source_build("${PROJECT_NAME} requires an out of source build. Please create a separate build directory and run 'cmake /path/to/${PROJECT_NAME} [options]' there.")
 
+if(NOT DEFINED WITH_SHARED_LIB)
+	set(WITH_SHARED_LIB ${BUILD_SHARED_LIBS})
+endif()
+
 # search for libraries
 if (WITH_ZLIB)
     find_package(ZLIB REQUIRED)
@@ -153,6 +157,7 @@ message(STATUS "Server support : ${WITH_SERVER}")
 message(STATUS "GSSAPI support : ${WITH_GSSAPI}")
 message(STATUS "Pcap debugging support : ${WITH_PCAP}")
 message(STATUS "With static library: ${WITH_STATIC_LIB}")
+message(STATUS "With shared library: ${WITH_SHARED_LIB}")
 message(STATUS "Unit testing: ${WITH_TESTING}")
 message(STATUS "Client code Unit testing: ${WITH_CLIENT_TESTING}")
 if (WITH_INTERNAL_DOC)
