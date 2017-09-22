@@ -531,6 +531,15 @@ LIBSSH_API int ssh_key_is_private(const ssh_key k);
 LIBSSH_API int ssh_key_cmp(const ssh_key k1,
                            const ssh_key k2,
                            enum ssh_keycmp_e what);
+	
+LIBSSH_API void makeDsaKey(ssh_key key, void* dsa);
+LIBSSH_API void makeRsaKey(ssh_key key, void* rsa);
+LIBSSH_API void* getKeyDsa(ssh_key key);
+LIBSSH_API void* getKeyRsa(ssh_key key);
+LIBSSH_API void* getKeyEcdsa(ssh_key key);
+LIBSSH_API int getKeyEcdsaNid(ssh_key key);
+LIBSSH_API void* getKeyEd25519Private(ssh_key key);
+LIBSSH_API int crypto_sign_ed25519(unsigned char *sm, unsigned long long *smlen, const unsigned char *m, unsigned long long mlen, const unsigned char *sk);
 
 LIBSSH_API int ssh_pki_generate(enum ssh_keytypes_e type, int parameter,
         ssh_key *pkey);

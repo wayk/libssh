@@ -1094,6 +1094,11 @@ SSH_PACKET_CALLBACK(ssh_packet_channel_open){
     goto end;
   }
 
+  if (strcmp(type_c,"auth-agent@openssh.com") == 0) {
+    msg->channel_request_open.type = SSH_CHANNEL_AUTH_AGENT;
+    goto end;
+  }
+	
   msg->channel_request_open.type = SSH_CHANNEL_UNKNOWN;
   goto end;
 

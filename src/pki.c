@@ -1664,6 +1664,55 @@ ssh_string ssh_srv_pki_do_sign_sessionid(ssh_session session,
 }
 #endif /* WITH_SERVER */
 
+
+void makeDsaKey(ssh_key key, void* dsa)
+{
+	key->flags = SSH_KEY_FLAG_PRIVATE | SSH_KEY_FLAG_PUBLIC;
+	key->type = SSH_KEYTYPE_DSS;
+	key->type_c = ssh_key_type_to_char(SSH_KEYTYPE_DSS);
+	key->dsa = dsa;
+}
+
+
+void makeRsaKey(ssh_key key, void* rsa)
+{
+	key->flags = SSH_KEY_FLAG_PRIVATE | SSH_KEY_FLAG_PUBLIC;
+	key->type = SSH_KEYTYPE_RSA;
+	key->type_c = ssh_key_type_to_char(SSH_KEYTYPE_RSA);
+	key->rsa = rsa;
+}
+
+
+void* getKeyDsa(ssh_key key)
+{
+	return key->dsa;
+}
+
+
+void* getKeyRsa(ssh_key key)
+{
+	return key->rsa;
+}
+
+
+void* getKeyEcdsa(ssh_key key)
+{
+	return key->ecdsa;
+}
+
+
+int getKeyEcdsaNid(ssh_key key)
+{
+	return key->ecdsa_nid;
+}
+
+
+void* getKeyEd25519Private(ssh_key key)
+{
+	return key->ed25519_privkey;
+}
+
+
 /**
  * @}
  */
